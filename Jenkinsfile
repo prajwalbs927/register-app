@@ -43,19 +43,17 @@ stage ('Build Application') {
     }
     }
     
-  stage ('Build and Push docker Image') {
-     steps {
-       script {
-         docker.withRegistry(' ',DOCKER_PASS) {
-           docker_image = docker.build "${IMAGE_NAME}"
-         }
-         docker.withRegistry(' ',DOCKER_PASS) {
-           docker_image.push("${IMAGE_TAG}")
-           docker_image.push('latest')
-         }
-       }
-     }
-   }
+  stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/prajwalbs927/praj9images/general', DOCKER_PASS) {
+                        def docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
+                        docker_image.push("${IMAGE_TAG}")
+                        docker_image.push('latest')
+                    }
+                }
+            }
+  }
     
   } 
 }
