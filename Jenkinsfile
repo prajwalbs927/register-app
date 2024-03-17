@@ -35,7 +35,7 @@ stage ('Build Application') {
     }
     }
      stage ('Quality Gate') {
-     agent {label 'built-in'}
+     agent any
       steps {
         script {
           waitForQualityGate abortPipeline: false, credentialsId: 'jenkins'
