@@ -46,6 +46,7 @@ stage ('Build Application') {
   stage('Build and Push Docker Image') {
             steps {
                 script {
+                  sh 'docker --version'
                     docker.withRegistry('https://hub.docker.com/repository/docker/prajwalbs927/praj9images/general', DOCKER_PASS) {
                         def docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                         docker_image.push("${IMAGE_TAG}")
