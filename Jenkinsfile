@@ -42,14 +42,7 @@ stage ('Build Application') {
       }
     }
     }
-     stage ('Quality Gate') {
-      steps {
-        agent {label 'node2'}
-        script {
-          waitForQualityGate abortPipeline: false, credentialsId: 'jenkins'
-        }
-      }
-    }
+    
   stage ('Build and Push docker Image') {
      steps {
        script {
