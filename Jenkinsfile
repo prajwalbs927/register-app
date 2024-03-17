@@ -8,7 +8,7 @@ pipeline{
   APP_NAME = "my-pipeline"
   RELEASE = "1.0.0"
   DOCKER_USER = "prajwalbs927"
-  DOCKER_PASS = 'dockerhub'
+  DOCKER_PASS = 'dockerpass'
   IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
   IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 }
@@ -48,7 +48,7 @@ stage ('Build Application') {
             steps {
                 script {
                   sh 'docker --version'
-                    docker.withRegistry('https://hub.docker.com/repository/docker/prajwalbs927/praj9images/general', 'dockerhub') {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/prajwalbs927/praj9images/general', 'dockerpass') {
                         def docker_image = docker.build "${IMAGE_NAME}:${IMAGE_TAG}"
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
