@@ -1,4 +1,3 @@
-
 pipeline{
   agent {label 'praju'}
   tools {
@@ -26,6 +25,16 @@ stage ('Build Application') {
         sh "mvn test"
       }
     }
+    stage ('Sonarqube Analyis') {
+    steps {
+      script {
+        withSonarQubeEnv(credentialsId: 'jenkins') {
+        sh "mvn sonar:sonar"
+        }
+      }
+    }
+    }
+    
     
   } 
 }
