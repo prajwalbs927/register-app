@@ -44,7 +44,7 @@ stage ('Build Application') {
     }
     
   stage('Build and Push Docker Image') {
-    stage {label 'node1'}
+    agent {label 'node1'}
             steps {
                 script {
                   sh 'docker --version'
