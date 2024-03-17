@@ -1,5 +1,5 @@
 pipeline{
-  agent {label 'praju'}
+  agent {label 'node2'}
   tools {
     jdk 'Java11'
     maven 'Maven3'
