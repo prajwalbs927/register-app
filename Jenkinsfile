@@ -34,7 +34,13 @@ stage ('Build Application') {
       }
     }
     }
-    
+    stage ('Quality Gate') {
+      steps {
+        script {
+          waitForQualityGate abortPipeline: false, credentialsId: 'jenkins'
+        }
+      }
+    }
     
   } 
 }
