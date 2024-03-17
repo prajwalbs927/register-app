@@ -1,5 +1,5 @@
 pipeline{
-  agent {label 'node2'}
+  agent {label 'praju'}
   tools {
     jdk 'Java11'
     maven 'Maven3'
@@ -36,7 +36,7 @@ stage ('Build Application') {
     }
      stage ('Quality Gate') {
       steps {
-        agent {label 'built-in'}
+        agent {label 'node2'}
         script {
           waitForQualityGate abortPipeline: false, credentialsId: 'jenkins'
         }
