@@ -43,7 +43,7 @@ stage ('Build Application') {
     }
     }
      stage ('Quality Gate') {
-
+     agent {label "built-in"}
       steps {
         script {
           waitForQualityGate abortPipeline: false, credentialsId: 'jenkins'
@@ -52,7 +52,6 @@ stage ('Build Application') {
     }
    stage ('Build and Push docker Image') {
      steps {
-       agent {label "built-in"}
        script {
          docker.withRegistry(' ',DOCKER_PASS) {
            docker_image = docker.build "${IMAGE_NAME}"
